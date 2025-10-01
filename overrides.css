@@ -405,6 +405,39 @@ section.hero.hero .btn-demo:focus-visible{ outline: 3px solid rgba(34,197,94,.45
   padding: 12px 0 !important;
 }
 
+/* Mobile: add subtle green glow at the top to match bottom */
+@media (max-width: 640px){
+  .hero-bg::before{
+    content: "";
+    position: absolute;
+    left: -2%; right: -2%; top: -1px;
+    height: min(40vh, 360px);
+    background: radial-gradient(70% 85% at 50% 12%, rgba(22,163,74,.18) 0%, rgba(22,163,74,.10) 38%, rgba(22,163,74,0) 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+/* Mobile: vertically center hero and push next section below fold */
+@media (max-width: 640px){
+  section.hero{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100svh !important;
+    min-height: calc(var(--vh, 1svh) * 100) !important;
+    padding-top: clamp(16px, 6vh, 32px) !important;
+    padding-bottom: clamp(16px, 6vh, 32px) !important;
+    text-align: center !important;
+  }
+  section.hero .hero__inner{ margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+  section.hero .btn-demo{ margin-left: auto !important; margin-right: auto !important; }
+  /* Cap background so it doesn't add whitespace */
+  section.hero .hero-bg{ height: auto !important; max-height: 100svh !important; }
+  /* Add breathing room before next section so it starts below the fold */
+  section.hero + section#meaning{ margin-top: clamp(24px, 12vh, 64px) !important; }
+}
+
 /* Footer (contact links) */
 .site-footer { padding: 32px 0 40px !important; }
 .site-footer .footer-inner {
